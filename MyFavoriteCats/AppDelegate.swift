@@ -15,8 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let barAppearence = UITabBarAppearance()
+        barAppearence.backgroundColor = .cyan
+        barAppearence.selectionIndicatorTintColor = .systemBlue
+        
+        let tabViewController: TabBarController = .init(nibName: nil, bundle: nil)
+        tabViewController.tabBar.barTintColor = .black
+        tabViewController.tabBar.unselectedItemTintColor = .black
+        tabViewController.tabBar.standardAppearance = barAppearence;
+        if #available(iOS 15.0, *) {
+            tabViewController.tabBar.scrollEdgeAppearance = tabViewController.tabBar.standardAppearance
+        }
+        
         let window: UIWindow = .init(frame: UIScreen.main.bounds)
-        window.rootViewController = TabBarController()
+        window.rootViewController = tabViewController
         self.window = window
         window.makeKeyAndVisible()
         return true

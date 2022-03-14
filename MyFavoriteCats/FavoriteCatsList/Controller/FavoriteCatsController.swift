@@ -27,7 +27,7 @@ final class FavoriteCatsListController: UIViewController, UICollectionViewDelega
     
     override func loadView() {
         view = catsView
-        self.title = "favoriteCats"
+        self.title = "Favorite Cats"
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
