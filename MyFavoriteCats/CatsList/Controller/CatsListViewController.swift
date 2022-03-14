@@ -9,17 +9,8 @@ import UIKit
 
 final class CatsListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CatsListViewCellDelegate {
     
-    
-    var cats: [Cats] = [.init(catBreed: "Bengal", imageCat: "bengal"),
-                        .init(catBreed: "Gato de Pelo Curto Inglês", imageCat: "gato-de-pelo-curto-ingles"),
-                        .init(catBreed: "Main Coon", imageCat: "main-coon"),
-                        .init(catBreed: "Munchkin", imageCat: "Munchkin"),
-                        .init(catBreed: "Norwegian Forest", imageCat: "norwegian-forest-cat"),
-                        .init(catBreed: "Persa", imageCat: "persa"),
-                        .init(catBreed: "Ragdoll", imageCat: "ragdoll"),
-                        .init(catBreed: "Savannah", imageCat: "Savannah"),
-                        .init(catBreed: "Siames", imageCat: "siames"),
-                        .init(catBreed: "Sphynx", imageCat: "sphynx")]
+    let api: CatAPI = .init()
+    var cats: [Cats] = []
     
     lazy var catsView : CatsListView = .init(collectionViewDelegate: self, collectionViewDataSource: self)
     
@@ -30,7 +21,12 @@ final class CatsListViewController: UIViewController, UICollectionViewDelegate, 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        catsView.collectionView.reloadData()
+        api.getCats { cats in
+            DispatchQueue.main.async {
+                self.cats = cats ?? []
+                self.catsView.collectionView.reloadData()
+            }
+        }
     }
     
     func favoriteAction(index: Int) {
@@ -61,7 +57,7 @@ final class CatsListViewController: UIViewController, UICollectionViewDelegate, 
         }
         let cat: Cats = cats[indexPath.item]
         let isFavorite: Bool = CatsManager.isCatFavorite(cat)
-        cell.setup(catBreed: cat.catBreed , catImage: UIImage(named: cat.imageCat), delegate: self, index: indexPath.item, isFavorite: isFavorite)
+        cell.setup(catBreed: cat.catBreed , catImageURL: cat.imageCat?.url, delegate: self, index: indexPath.item, isFavorite: isFavorite)
         return cell
     }
     

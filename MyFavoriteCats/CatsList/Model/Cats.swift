@@ -7,13 +7,22 @@
 
 import Foundation
 
+struct Image: Codable {
+    let url: URL
+}
+
 
 final class Cats: Codable, Equatable {
     
     let catBreed: String
-    let imageCat: String
+    let imageCat: Image?
     
-    init(catBreed: String, imageCat: String) {
+    private enum CodingKeys : String, CodingKey {
+        case catBreed = "name"
+        case imageCat = "image"
+    }
+    
+    init(catBreed: String, imageCat: Image) {
         self.catBreed = catBreed
         self.imageCat = imageCat
     }

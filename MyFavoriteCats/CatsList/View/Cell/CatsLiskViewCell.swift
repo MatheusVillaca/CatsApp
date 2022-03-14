@@ -44,9 +44,19 @@ final class CatsListViewCell: UICollectionViewCell, ViewCode {
     
     var delegate: CatsListViewCellDelegate?
     
-    func setup(catBreed: String, catImage: UIImage?, delegate: CatsListViewCellDelegate, index: Int, isFavorite: Bool) {
+    func setup(catBreed: String, catImageURL: URL?, delegate: CatsListViewCellDelegate, index: Int, isFavorite: Bool) {
         self.catBreed.text = catBreed
-        self.catImage.image = catImage
+        if let url: URL = catImageURL {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+               guard let data = data, error == nil,
+                     let image = UIImage(data: data)
+                else { return }
+               DispatchQueue.main.async() {
+                   self.catImage.image = image
+               }
+           }.resume()
+        }
+        
         self.delegate = delegate
         self.index = index
         self.isFavorite = isFavorite

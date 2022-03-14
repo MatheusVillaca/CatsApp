@@ -21,6 +21,10 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.unselectedItemTintColor = .black
         self.tabBar.tintColor = .systemBlue
         
+        let categorieController = CategoriesViewController()
+        let tabCategorieBarItem = UITabBarItem(title: "Categories", image: UIImage(named: "categorieIcon"), selectedImage: UIImage(named: "categorieIcon"))
+        categorieController.tabBarItem = tabCategorieBarItem
+        
         let listCats = CatsListViewController()
         let tabCatsBarItem = UITabBarItem ( title: "Cats" , image: UIImage ( named: "icons8-gato-25" ) , selectedImage: UIImage ( named: "icons8-gato-25" ))
         listCats.tabBarItem = tabCatsBarItem
@@ -29,7 +33,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let tabFavoriteCatsBarItem = UITabBarItem (title: "Favorite Cats", image: UIImage(named: "icons8-cat-25"), selectedImage: UIImage(named: "icons8-cat-25"))
         favoriteCats.tabBarItem = tabFavoriteCatsBarItem
         
-        self.viewControllers = [listCats, favoriteCats]
+        self.viewControllers = [listCats, favoriteCats, categorieController]
     }
     
 }

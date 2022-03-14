@@ -44,7 +44,7 @@ final class FavoriteCatsListController: UIViewController, UICollectionViewDelega
         }
         let cat: Cats = favoriteCats[indexPath.item]
         let isFavorite: Bool = CatsManager.isCatFavorite(cat)
-        cell.setup(catBreed: cat.catBreed, catImage: UIImage(named: cat.imageCat ), delegate: self, index: indexPath.item, isFavorite: isFavorite)
+        cell.setup(catBreed: cat.catBreed, catImageURL: cat.imageCat?.url, delegate: self, index: indexPath.item, isFavorite: isFavorite)
         return cell
     }
     
