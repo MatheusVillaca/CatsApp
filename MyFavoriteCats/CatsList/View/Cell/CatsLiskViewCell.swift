@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol CatsListViewCellDelegate {
     func favoriteAction(index: Int)
@@ -46,17 +47,7 @@ final class CatsListViewCell: UICollectionViewCell, ViewCode {
     
     func setup(catBreed: String, catImageURL: URL?, delegate: CatsListViewCellDelegate, index: Int, isFavorite: Bool) {
         self.catBreed.text = catBreed
-        if let url: URL = catImageURL {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-               guard let data = data, error == nil,
-                     let image = UIImage(data: data)
-                else { return }
-               DispatchQueue.main.async() {
-                   self.catImage.image = image
-               }
-           }.resume()
-        }
-        
+        self.catImage.kf.setImage(with: catImageURL, placeholder: UIImage(named: "placeholder"))
         self.delegate = delegate
         self.index = index
         self.isFavorite = isFavorite

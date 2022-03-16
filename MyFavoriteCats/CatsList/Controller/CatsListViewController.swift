@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 final class CatsListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CatsListViewCellDelegate {
     
@@ -21,8 +22,12 @@ final class CatsListViewController: UIViewController, UICollectionViewDelegate, 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.viewToPresentOn = view
+        PKHUD.sharedHUD.show()
         api.getCats { cats in
             DispatchQueue.main.async {
+                PKHUD.sharedHUD.hide(afterDelay: 0) 
                 self.cats = cats ?? []
                 self.catsView.collectionView.reloadData()
             }

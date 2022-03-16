@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 final class CatAPI {
     
@@ -17,6 +18,9 @@ final class CatAPI {
     }
     
     func getCats(completion: @escaping ((_ cats: [Cats]?)-> Void)) {
+        
+        
+        
         guard var urlComponents: URLComponents = URLComponents(string: "https://api.thecatapi.com/v1/breeds") else {
             completion([])
             return
