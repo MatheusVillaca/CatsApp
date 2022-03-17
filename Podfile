@@ -7,7 +7,6 @@ target 'MyFavoriteCats' do
 
   # Pods for MyFavoriteCats
   pod 'Kingfisher', '~> 7.0'
-  pod 'Alamofire', '~> 5.5'
   pod 'PKHUD', '~> 5.0'
 
   target 'MyFavoriteCatsTests' do
