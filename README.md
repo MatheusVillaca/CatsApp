@@ -5,13 +5,21 @@
 
 # CatsApp
 
-Pequena descrição do seu projeto
+Segundo aplicativo desenvolvido por mim, durante meus estudos, onde o intuito foi colocar em prática meus conhecimentos adquiridos ao longo de uma mentoria concedida por um desenvolvedor com vários anos de experiência na área. 
 
 ## Tecnologias
 
-Linguagem utilizada, recursos utilizos, padrões
+O app foi desenvolvido em `Swift`, seguindo a arquitetura `MVC`.
+
+As telas foram desenvolvidas **programaticamente**, implementando o protocolo `ViewCode`, visando assim seguir um padrão.
+
+Foi ultilizado o gerenciador de dependências `CocoaPods` para adicionar as bibliotecas `KingFisher` e `PKHUD`.
+
+A navegação do app foi montada com `UITabBarController`, onde a listagem dos elementos foi feita com `UICollectionView`, e o armazenameto local de favoritos foi implementado ultilizando o `UserDefaults`.
+
+Os dados apresentados foram extraídos de uma [API pública](https://api.thecatapi.com/v1/breeds), onde o `JSON` retornado foi decodificado ultilizando o protocolo `Codable`.
 
 ## Desafios
 
-O que te desafiou nesse projeto
+Foi a primeira vez que implementei uma  comunicação com `API`, e montei minha navegação ultilizando `UITabBarController`. Também foi meu primeiro contato com `UICollectionView`, porém, como já havia ultilizado em meu primeiro projeto `UITableView`, não tive grandes dificuldades.
 
